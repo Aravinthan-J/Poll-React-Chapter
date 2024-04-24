@@ -36,8 +36,6 @@ const reducer = (state, action) => {
 // Create the context
 export const PollContext = createContext();
 
-// Create the context provider component
-
 export const PollProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -62,6 +60,7 @@ export const PollProvider = ({ children }) => {
         login,
         logout,
         updatePollState,
+  
       }}
     >
       {children}
