@@ -38,10 +38,6 @@ export const PollContext = createContext();
 
 // Create the context provider component
 
-PollProvider.propTypes = {
-  children: PropTypes.node,
-};
-
 export const PollProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
@@ -71,4 +67,8 @@ export const PollProvider = ({ children }) => {
       {children}
     </PollContext.Provider>
   );
+};
+
+PollProvider.propTypes = {
+  children: PropTypes.node,
 };

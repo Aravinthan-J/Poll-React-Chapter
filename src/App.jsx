@@ -1,6 +1,10 @@
+import { Auth } from "./components/Auth";
+
+import "./App.css";
+
 function App() {
   return (
-    <div>asdasd</div>
+    <Auth />
   )
 }
 
