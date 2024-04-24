@@ -60,6 +60,7 @@ export const PollProvider = ({ children }) => {
         login,
         logout,
         updatePollState,
+  
       }}
     >
       {children}
