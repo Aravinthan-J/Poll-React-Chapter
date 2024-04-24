@@ -1,0 +1,6 @@
+.questionName {
+  display: flex;
+  max-height: 10rem;
+  width: 20rem;
+  font-family: cursive;
+}
