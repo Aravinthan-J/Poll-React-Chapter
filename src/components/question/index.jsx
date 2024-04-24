@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { Button, Input } from "@mui/material";
+import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 
 import { EmptyTextarea } from "../textarea";
 
@@ -27,11 +28,11 @@ export function Question() {
   return (
     <>
       <div>
-        <EmptyTextarea
+        <TextareaAutosize
           onChange={(event) => {
             setQuestionName(event.target.value);
           }}
-          textValue={questonName}
+          value={questonName}
         />
         <br />
         {optionList.map(({ value }, index) => {
