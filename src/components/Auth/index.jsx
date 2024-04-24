@@ -1,39 +1,34 @@
-import  { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 
 import styles from "./styles.module.css";
 
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
 import LoginSvg from "../../assets/login.svg";
 
-import { signInWithGooglePopup, auth } from "../../firebase.util"
+import { signInWithGooglePopup, auth } from "../../firebase.util";
 import { signOut, onAuthStateChanged } from "firebase/auth";
 
 import { PollContext } from "../../context";
+import { Navigate } from "react-router-dom";
 
 export const Auth = () => {
+  const { login, logout, state } = useContext(PollContext);
 
-  const { 
-    login,
-    logout,
-    state   } = useContext(PollContext);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      user && login(user.uid);
+    });
 
-    useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, (user) => {
-    user && login(user.uid);
-  });
-
-  return () => unsubscribe();
-}, []);
-
-
+    return () => unsubscribe();
+  }, []);
 
   const signInUser = async () => {
     try {
       const response = await signInWithGooglePopup();
       console.log("USER SIGNED IN");
       login(response.user.uid);
-    } catch(err) {
+    } catch (err) {
       console.log(err);
     }
   };
@@ -49,7 +44,7 @@ export const Auth = () => {
   // };
 
   if (state.isAuthenticated) {
-    return <div>create</div>
+    return <Navigate to={"/create"} />;
   }
 
   return (
@@ -66,7 +61,7 @@ export const Auth = () => {
 };
 
 // {state.userId ? <button onClick={signOutUser}>log out</button> : <button onClick={signInUser}>sign in</button>}
-// const { 
+// const {
 //   login,
 //   logout,
 //   state
@@ -79,7 +74,6 @@ export const Auth = () => {
 
 //   return () => unsubscribe();
 // }, []);
-
 
 // const signInUser = async () => {
 //   try {
