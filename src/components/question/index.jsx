@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import { Button, Input } from "@mui/material";
 
-import EmptyTextarea from "../textarea";
+import { EmptyTextarea } from "../textarea";
 
 import "./style.css";
 

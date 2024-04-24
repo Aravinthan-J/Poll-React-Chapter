@@ -1,9 +1,9 @@
-// import * as React from "react";
+import React from "react";
 import { TextareaAutosize as BaseTextareaAutosize } from "@mui/base/TextareaAutosize";
 import { styled } from "@mui/system";
 
 // eslint-disable-next-line react/prop-types
-export default function EmptyTextarea({ textValue, onChange }) {
+export const EmptyTextarea = ({ textValue, onChange }) => {
   const blue = {
     100: "#DAECFF",
     200: "#b6daff",
@@ -63,4 +63,4 @@ export default function EmptyTextarea({ textValue, onChange }) {
   );
 
   return <Textarea placeholder="Empty" value={textValue} onChange={onChange} />;
-}
+};
