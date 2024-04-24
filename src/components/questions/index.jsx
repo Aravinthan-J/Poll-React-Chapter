@@ -1,42 +1,48 @@
-import { useState } from "react";
-
+import { useState, useContext } from "react";
+import { nanoid } from "nanoid";
 import { Button, Input } from "@mui/material";
+import { TextareaAutosize  } from "@mui/base/TextareaAutosize";
 
-import { EmptyTextarea } from "../textarea";
+
+import { createQuestion } from "../../firebase.util";
+import { PollContext } from "../../context";
+
 
 import "./style.css";
 
-// const questionSample = {
-//   id: "A_q1",
-// };
-
+function createUnqId(){
+const uniqueID = nanoid();
 const defaultoption = {
-  uid: "",
+  uid: uniqueID,
   value: "",
 };
+return defaultoption
+}
 
 export function Question() {
   const [questonName, setQuestionName] = useState("");
-  const [optionList, setOptionList] = useState([defaultoption]);
+  const [optionList, setOptionList] = useState([createUnqId()]);
   const [optionValue, setOptionValue] = useState([]);
 
+  const {state} = useContext(PollContext)
+
   function addOption() {
-    setOptionList([...optionList, { ...defaultoption }]);
+    setOptionList([...optionList, createUnqId()]);
   }
 
   return (
     <>
       <div>
-        <EmptyTextarea
+        <TextareaAutosize placeholder="Empty"
           onChange={(event) => {
             setQuestionName(event.target.value);
           }}
-          textValue={questonName}
+          value={questonName}
         />
         <br />
-        {optionList.map(({ value }, index) => {
+        {optionList.map(({ uid,value }, index) => {
           return (
-            <div key={index}>
+            <div key={uid}>
               <Input
                 defaultValue={value}
                 onChange={(event) => {
@@ -45,15 +51,28 @@ export function Question() {
                     prev[index] = value;
                     return [...prev];
                   });
+                  setOptionList((prev) => {
+                    prev[index].value = value;
+                    return [...prev];
+                  });
                 }}
                 value={optionValue[index]}
               />
             </div>
           );
         })}
-        <Button onClick={addOption}>Add option</Button>
+        <Button variant="outlined" onClick={addOption}>Add option</Button>
       </div>
-      <Button type="primary">Submit</Button>
+      <Button type="primary"  variant="contained"  onClick={() => {
+    createQuestion({
+      title: questonName,
+      options: optionList,
+      created_by: state.userId
+    })
+    setOptionList([createUnqId()])
+    setQuestionName("")
+    setOptionValue([])
+      }}>Submit</Button>
     </>
   );
 }
