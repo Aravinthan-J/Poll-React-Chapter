@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
+import { nanoid } from "nanoid"
 
 const firebaseConfig = {
     apiKey: "AIzaSyAJMsl-DUS_1ZUYkHWo-7ecaZ_udUm_h2o",
@@ -20,3 +22,14 @@ provider.setCustomParameters({
 
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+
+const db = getDatabase();
+
+const createQuestion = (payload) => {
+  const uniqueID = nanoid();
+  const dbRef = ref(db, "question/ "+uniqueID);
+  set(dbRef, {id: uniqueID,  ...payload});  
+}
+
+
+export { createQuestion};
