@@ -8,11 +8,8 @@ import { PollContext } from "./context";
 
 import "./App.css";
 
-
-
 function App() {
-
-  return <Auth/>;
+  return <Auth />;
 }
 
-export default App
+export default App;
