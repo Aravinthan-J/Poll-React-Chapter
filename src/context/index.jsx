@@ -1,7 +1,7 @@
-import { createContext, useReducer } from 'react';
-import PropTypes from 'prop-types';
+import { createContext, useReducer } from "react";
+import PropTypes from "prop-types";
 
-import { STATE_ACTIONS } from '../helper/constants';
+import { STATE_ACTIONS } from "../helper/constants";
 
 const initialState = {
   isAuthenticated: false,
@@ -43,15 +43,15 @@ export const PollProvider = ({ children }) => {
 
   // Define the action functions
   const login = (userId) => {
-    dispatch({ type: 'LOGIN', payload: { userId } });
+    dispatch({ type: "LOGIN", payload: { userId } });
   };
 
   const logout = () => {
-    dispatch({ type: 'LOGOUT' });
+    dispatch({ type: "LOGOUT" });
   };
 
   const updatePollState = (pollState) => {
-    dispatch({ type: 'UPDATE_POLL_STATE', payload: { pollState } });
+    dispatch({ type: "UPDATE_POLL_STATE", payload: { pollState } });
   };
 
   // Provide the state and action functions to the children components
