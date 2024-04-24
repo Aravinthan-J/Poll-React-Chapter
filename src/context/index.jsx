@@ -68,7 +68,6 @@ export const PollProvider = ({ children }) => {
     </PollContext.Provider>
   );
 };
-
 PollProvider.propTypes = {
   children: PropTypes.node,
 };
