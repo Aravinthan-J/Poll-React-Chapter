@@ -7,26 +7,23 @@ import Button from '@mui/material/Button';
 import LoginSvg from "../../assets/login.svg";
 
 import { signInWithGooglePopup, auth } from "../../firebase.util"
-import { signOut, onAuthStateChanged } from "firebase/auth";
-
+import { onAuthStateChanged } from "firebase/auth";
 import { PollContext } from "../../context";
+import { Home } from "./Home";
 
 export const Auth = () => {
 
   const { 
     login,
-    logout,
-    state   } = useContext(PollContext);
+    state   
+  } = useContext(PollContext);
 
     useEffect(() => {
-  const unsubscribe = onAuthStateChanged(auth, (user) => {
-    user && login(user.uid);
-  });
-
-  return () => unsubscribe();
-}, []);
-
-
+      const unsubscribe = onAuthStateChanged(auth, (user) => {
+        user && login(user.uid);
+      });
+      return () => unsubscribe();
+    }, []);
 
   const signInUser = async () => {
     try {
@@ -38,18 +35,8 @@ export const Auth = () => {
     }
   };
 
-  // const signOutUser = async () => {
-  //   try {
-  //     const response = await signOut(auth);
-  //     console.log("USER SIGNEFD OUT", {response});
-  //     logout();
-  //   } catch(err) {
-  //     console.log(err);
-  //   }
-  // };
-
   if (state.isAuthenticated) {
-    return <div>create</div>
+    return <Home/>
   }
 
   return (
@@ -64,39 +51,3 @@ export const Auth = () => {
     </div>
   );
 };
-
-// {state.userId ? <button onClick={signOutUser}>log out</button> : <button onClick={signInUser}>sign in</button>}
-// const { 
-//   login,
-//   logout,
-//   state
-//  } = useContext(PollContext);
-
-//  useEffect(() => {
-//   const unsubscribe = onAuthStateChanged(auth, (user) => {
-//     user && login(user.uid);
-//   });
-
-//   return () => unsubscribe();
-// }, []);
-
-
-// const signInUser = async () => {
-//   try {
-//     const response = await signInWithGooglePopup();
-//     console.log("USER SIGNED IN");
-//     login(response.user.uid);
-//   } catch(err) {
-//     console.log(err);
-//   }
-// };
-
-// const signOutUser = async () => {
-//   try {
-//     const response = await signOut(auth);
-//     console.log("USER SIGNEFD OUT", {response});
-//     logout();
-//   } catch(err) {
-//     console.log(err);
-//   }
-// };
