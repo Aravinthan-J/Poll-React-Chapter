@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 
 import { auth } from "../../../firebase.util";
 import { PollContext } from "../../../context";
+import { Question } from "../../questions";
 
 export const Home = () => {
 
@@ -27,7 +28,7 @@ export const Home = () => {
         </div>
     </nav>
     <main>
-      Test 123
+      <Question />
     </main>
     </div>
     );

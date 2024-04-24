@@ -4,7 +4,7 @@ import styles from "./styles.module.css";
 
 import Button from '@mui/material/Button';
 
-import LoginSvg from "../../assets/login.svg";
+import LoginSvg from "../../assets/login1.svg";
 
 import { signInWithGooglePopup, auth } from "../../firebase.util"
 import { onAuthStateChanged } from "firebase/auth";
