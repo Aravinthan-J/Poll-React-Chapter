@@ -1,7 +1,11 @@
+import { Question } from "./question";
+
 function App() {
   return (
-    <div>asdasd</div>
-  )
+    <div>
+      <Question />
+    </div>
+  );
 }
 
-export default App
+export default App;
