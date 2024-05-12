@@ -54,7 +54,11 @@ function CheckBoxComponent() {
   const handleOptionChange = (event) => {
     const value = event.target.value;
     if (selectedOptions.includes(value)) {
-      setSelectedOptions(selectedOptions.filter((option) => option !== value));
+      let a = selectedOptions.filter((option) => option !== value);
+      setSelectedOptions(a);
+      for (let i = 0; i < 1000; i++) {
+        console.log(i);
+      }
     } else {
       setSelectedOptions([...selectedOptions, value]);
     }
