@@ -33,7 +33,7 @@ const reducer = (state, action) => {
   }
 };
 
-// Create the context
+// Create the context Yes
 export const PollContext = createContext();
 
 export const PollProvider = ({ children }) => {
@@ -60,13 +60,13 @@ export const PollProvider = ({ children }) => {
         login,
         logout,
         updatePollState,
-  
       }}
     >
       {children}
     </PollContext.Provider>
   );
 };
+
 PollProvider.propTypes = {
   children: PropTypes.node,
 };
