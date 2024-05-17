@@ -62,5 +62,9 @@ export const EmptyTextarea = ({ textValue, onChange }) => {
   `
   );
 
+  for (let i = 0; i < 1000; i++) {
+    if (i === 3000) console.log("Lock");
+  }
+
   return <Textarea placeholder="Empty" value={textValue} onChange={onChange} />;
 };
